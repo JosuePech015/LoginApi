@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+<div class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-4">
+  <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Weather App</h1>
+  <p class="text-center text-gray-500 mb-6">Get current weather information for any city</p>
+
+  <div class="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-4">
+    <label class="block mb-2 font-semibold text-gray-600">🔍 Search Weather</label>
+    <div class="flex gap-2 mb-4">
+      <input
+        [(ngModel)]="ciudad"
+        type="text"
+        placeholder="Enter a city name"
+        class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        (click)="obtenerClima()"
+        class="bg-red-900 text-white px-4 py-2 rounded-md hover:bg-red-800"
+      >
+        🔎
+      </button>
+    </div>
+
+    <div *ngIf="error" class="text-center text-red-600">{{ error }}</div>
+
+    <div *ngIf="clima" class="bg-white rounded-xl shadow-md p-6 mt-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-gray-800">{{ clima.ciudad }}, {{ pais }}</h2>
+          <p class="text-sm text-gray-500 capitalize">🌦️ {{ clima.descripcion }}</p>
+        </div>
+        <div class="bg-orange-500 text-white px-3 py-1 rounded-lg text-lg">
+          {{ clima.temperatura }}°C
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 text-sm text-gray-700">
+        <div class="flex flex-col items-center bg-blue-100 p-3 rounded-md">
+          <span class="text-2xl">🌡️</span>
+          <strong>{{ clima.temperatura }}°C</strong>
+          <span class="text-xs text-gray-500">Temperature</span>
+        </div>
+        <div class="flex flex-col items-center bg-green-100 p-3 rounded-md">
+          <span class="text-2xl">💧</span>
+          <strong>{{ clima.humedad }}%</strong>
+          <span class="text-xs text-gray-500">Humidity</span>
+        </div>
+        <div class="flex flex-col items-center bg-purple-100 p-3 rounded-md">
+          <span class="text-2xl">🌬️</span>
+          <strong>{{ clima.viento }} m/s</strong>
+          <span class="text-xs text-gray-500">Wind Speed</span>
+        </div>
+        <div class="flex flex-col items-center bg-orange-100 p-3 rounded-md">
+          <span class="text-2xl">👁️</span>
+          <strong>{{ clima.visibilidad }} km</strong>
+          <span class="text-xs text-gray-500">Visibility</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

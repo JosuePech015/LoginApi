@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent } // Login
+  { path: '', loadChildren: () => import('./AppMajo/app-majo.routes').then(m => m.appMajoRoutes) },
 ];
 
